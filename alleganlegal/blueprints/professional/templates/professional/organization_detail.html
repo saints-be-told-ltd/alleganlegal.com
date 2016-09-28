@@ -1,0 +1,37 @@
+{% extends 'layouts/02_app.html' %}
+
+{% set title = organization.title %}
+{% block meta_description %}TODO{% endblock %}
+
+{% block tracking %}{{ tracking.log(route="organization", slug=organization.slug)|safe }}{% endblock %}
+
+{% block body %}
+    <h1>{{ organization.title }}</h1>
+    <h2>Law office in Allegan, Michigan.</h2>
+
+    <a href="#" id="phone-number" onclick="showPhone()">{{ organization._phone['human'] }}</a>
+
+    <br/>
+
+    <iframe
+      width="600"
+      height="450"
+      frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCXP3h3qibOxSH3z2L11mSmnmo-0ntEXYA
+        &q={{ organization.address_safe }}
+        &zoom={{ organization.map_zoom }}"
+        allowfullscreen>
+    </iframe>
+
+    <script type="text/javascript">
+        e = document.getElementById('phone-number');
+        function showPhone() {
+            var phone_log = log;
+            phone_log["route"] = "organization - phone";
+            database.ref('logs').push(phone_log);
+
+            e.href = "tel:{{ organization._phone['intl'] }}";
+            e.onclick = null;
+        }
+    </script>
+{% endblock %}

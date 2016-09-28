@@ -1,0 +1,27 @@
+{% extends 'layouts/02_app.html' %}
+
+{% set title = "Find professional legal services in Allegan, Michigan" %}
+{% block meta_description %}{% endblock %}
+
+{% block tracking %}{{ tracking.log(route="home", slug="None")|safe }}{% endblock %}
+
+{% block body %}
+  <div class="container sm-margin-top">
+    <div class="row text-center lg-margin-bottom">
+      <h1>Allegan Legal</h1>
+      <h3 class="text-muted">
+        Legal services in Allegan, Michigan.
+      </h3>
+    </div>
+    <div class="row text-center">
+      <div class="col-lg-12">
+        <i class="fa fa-fw fa-4x fa-institution text-primary"></i>
+        <h2>Law Offices</h2>
+        <p class="text-muted">Professional companies providing legal services.</p>
+        <p>
+          <a href="{{ url_for('search.list') }}" class="btn btn-default">Find a Lawyer</a>
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

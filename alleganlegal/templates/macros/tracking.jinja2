@@ -1,0 +1,15 @@
+{%- macro log(route, slug) -%}
+    {% if config['LOCALHOST'] %}<!--{% endif %}
+    <script src="https://l2.io/ip.js?var=myip"></script>
+    <script type="text/javascript">
+        var database = firebase.database();
+        var log = {
+            "ip": myip,
+            "route": "{{ route }}",
+            "slug": "{{ slug }}",
+            "time": new Date().toLocaleString()
+        }
+        database.ref('logs').push(log);
+    </script>
+    {% if config['LOCALHOST'] %}-->{% endif %}
+{%- endmacro -%}

@@ -1,0 +1,51 @@
+{% extends 'layouts/02_app.html' %}
+
+{% set title = term.term + " Lawyers in Allegan, MI - Allegan Legal" %}
+{% block meta_description %}TODO{% endblock %}
+
+{% set term_value = synonym.value if synonym else term.term %}
+{% set banner_title = term_value %}
+{% set banner_img = url_for('static', filename='images/terms/' + term.slug + '.png') %}
+
+{% block tracking %}{{ tracking.log(route="search", slug=term_value)|safe }}{% endblock %}
+
+{% block body %}
+    <table class="table table-striped table-hover">
+    <tbody>
+    {% for organization_s in term.organization_results %}
+        {% set organization = organization_s[1] %}
+        <tr>
+            <td class="table-main-results">
+                <a href="{{ url_for('professional.organization_detail', slug=organization.slug) }}">
+                    {{ organization.title }}
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
+    {% if not synonym %}
+        <div class="row">
+            <h3>Find out more</h3>
+
+            <table class="table table-striped table-hover">
+            {% for synonym in term.synonyms %}
+                {% if not loop.index is divisibleby 2 %}
+                <tr>
+                {% endif %}
+
+                    <td>
+                        <a href="{{ url_for('search.results', slug=synonym.slug) }}">
+                            {{ synonym.value }}
+                        </a>
+                    </td>
+
+                {% if loop.index is divisibleby 2 %}
+                </tr>
+                {% endif %}
+            {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}
