@@ -1,3 +1,2 @@
-# Frozen-Flask
 FREEZER_DESTINATION = "../public"
 FREEZER_IGNORE_MIMETYPE_WARNINGS = True

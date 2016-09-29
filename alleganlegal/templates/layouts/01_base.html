@@ -10,15 +10,23 @@
 
         <title>{% if title %}{{ title }} - {% endif %}Allegan Legal</title>
 
-        <link
-          rel="stylesheet"
-          href="{{ url_for('static', filename='styles/vendor/bootstrap.min.css') }}">
-        <!--
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        -->
+        {% if config['DEBUG'] %}
+            <link rel="icon" href="/static/images/favicon_debug.ico" sizes="16x16">
+        {% else %}
+            {% if config['ENV'] == 'staging' %}
+                <link rel="icon" href="/static/images/favicon_staging.ico" sizes="16x16">
+            {% elif config['ENV'] == 'publish' or config['ENV'] == 'testing' %}
+                <link rel="icon" href="/static/images/favicon.ico" sizes="16x16">
+            {% endif %}
+        {% endif %}
 
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+        {% if config['DEBUG'] %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='styles/vendor/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='fontello/fontello.css') }}">
+        {% else %}
+            <link rel="stylesheet" href="/static/styles/main.css">
+        {% endif %}
     </head>
     <body>
         {% block header %}{% endblock %}
@@ -35,6 +43,7 @@
                         <li>Made with <a href="{{ config['GITHUB_URL'] }}" target="_blank">&hearts;</a> in <a href="http://www.cityofallegan.org/" target="_blank">Allegan</a>, <a href="http://www.michigan.org/" target="_blank">Michigan</a>.</li>
                     </ul>
                 {% endif %}
+
                 <ul class="list-inline">
                     <li class="text-muted">Allegan Legal &copy; {{ current_year() }}</li>
                     <li><a href="{{ url_for('pages.privacy') }}">Privacy Policy</a></li>
@@ -42,6 +51,19 @@
                 </ul>
             </div>
         </footer>
+
+        {% if config['DEBUG'] %}
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/helium-css/1.1/helium.min.js" integrity="sha256-IOJaUbT9+J/umAmN6TBVIPS3JBdkgb6w0V9q1aeOAro=" crossorigin="anonymous"></script>
+            <!--
+            <script type="text/javascript">
+                window.addEventListener('load', function(){
+
+                    helium.init();
+
+                }, false);
+            </script>
+            -->
+        {% endif %}
 
         {% if config['ANALYTICS_GOOGLE_UA'] %}
             <script>
@@ -54,19 +76,12 @@
                 ga('send', 'pageview');
             </script>
         {% endif %}
-        <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
-        <script>
-            var config = {
-                apiKey: "AIzaSyDjQElvzTrReg8YIQoQrKZ2LLqVzvEnIK0",
-                authDomain: "allegan-legal.firebaseapp.com",
-                databaseURL: "https://allegan-legal.firebaseio.com",
-                storageBucket: "allegan-legal.appspot.com",
-                messagingSenderId: "677870228007"
-            };
-            firebase.initializeApp(config);
-        </script>
+
+        <!--
         <script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        -->
+
         {% block tracking %}{% endblock %}
     </body>
 </html>

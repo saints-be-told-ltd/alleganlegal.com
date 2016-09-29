@@ -18,6 +18,9 @@ def create_app(environment='develop'):
     app = Flask(__name__)
 
     # Configuration -----------------------------------------------------------
+    if not environment:
+        environment = 'develop'
+
     cwd = path.dirname(path.abspath(__file__))
     config_dir = path.join(cwd, 'config')
 
@@ -33,6 +36,7 @@ def create_app(environment='develop'):
         if environment:
             if environment in config_file:
                 break # only go as deep as the runtime
+    app.config['ENV'] = environment
 
     # Blueprints --------------------------------------------------------------
     app.register_blueprint(page)

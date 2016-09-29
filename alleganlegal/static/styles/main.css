@@ -37,7 +37,6 @@ body {
 header.banner {
     position: relative;
     height: 300px;
-    width: 100vw;
 }
 
 header.banner .title {
@@ -96,6 +95,26 @@ header.banner .title {
     height: 20px;
 }
 
+/* Fontello icons
+-------------------------------------------------- */
+.fa {
+    display: inline-block;
+    font-size: inherit;
+    text-rendering: auto;
+    font: normal normal normal 14px/1 fontello;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-fw {
+    width: 1.28571429em;
+    text-align: center;
+}
+
+.fa-4x {
+    font-size: 4em;
+}
+
 /* Margin and padding
 -------------------------------------------------- */
 .lg-margin-bottom {
@@ -121,6 +140,7 @@ header.banner .title {
 /* Helpers
 -------------------------------------------------- */
 
+/* Unused CSS
 .small {
     font-size: 12px;
 }
@@ -148,9 +168,12 @@ header.banner .title {
 .relative {
     position: relative;
 }
+*/
 
 /* Bootstrap overrides
 -------------------------------------------------- */
+
+/* Unused CSS
 label {
     font-weight: 400;
 }
@@ -185,3 +208,4 @@ label {
 dd {
     margin-bottom: 8px;
 }
+*/
