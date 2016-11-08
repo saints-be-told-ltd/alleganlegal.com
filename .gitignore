@@ -1,4 +1,36 @@
+#
+# flask
+#
+
+__pycache__/
+*.py[cod]
 *.egg-info/
-*.pyc
-node_modules/
-public/
+
+#
+# static server
+#
+
+static-server/node_modules/
+static-server/public/
+flask-server/alleganlegal/static/font/
+flask-server/alleganlegal/static/fontello/
+
+#
+# continuous integration
+#
+
+.cache
+env/
+.pytest
+.coverage
+.coverage.*
+htmlcov/
+xmlreport/
+/pyunit.xml
+*.tmp
+
+#
+# database
+#
+
+nohup.out
