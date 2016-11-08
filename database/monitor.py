@@ -48,7 +48,7 @@ def main():
                 stream.write(new_backup)
             print('[{}] Backed up the database!'.format(current_time()))
 
-        sleep(1)
+        sleep(60)
 
     print('[{}] Goodbye!'.format(current_time()))
 

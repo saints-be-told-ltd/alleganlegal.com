@@ -6,8 +6,7 @@
 {% block tracking %}{{ tracking.log(route="search_index", slug="None")|safe }}{% endblock %}
 
 {% block body %}
-    <h1>Lawyers</h1>
-    <h2>Find legal professionals in Allegan, Michigan.</h2>
+    <h2 style="padding: 0 0 10px 15px">Find legal professionals in Allegan, Michigan.</h2>
 
     {% for term in terms %}
         <div class="col-sm-12 col-md-6 col-lg-6">
