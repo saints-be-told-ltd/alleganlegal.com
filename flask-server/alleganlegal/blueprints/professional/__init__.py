@@ -1,2 +1,2 @@
-from .views import professional
+from .views import org
 from .models import Organization, Person

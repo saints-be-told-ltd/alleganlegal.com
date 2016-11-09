@@ -42,28 +42,10 @@ class Term(db.Model):
 
     @property
     def organization_results(self):
-        from random import randint
-
-        organizations_len = 0
-        for organization in self.organizations:
-            organizations_len += 1
-
-        results = []
-        used = []
-        for organization in self.organizations:
-            if organization.favorite:
-                results.append((1, organization))
-                continue
-
-            n = None
-            while True:
-                n = randint(2, organizations_len)
-                if n not in used:
-                    used.append(n)
-                    break
-            results.append((n, organization))
-
-        return sorted(results)
+        from random import shuffle
+        results = [o for o in self.organizations]
+        shuffle(results)
+        return results
 
     def __repr__(self):
         return self.term

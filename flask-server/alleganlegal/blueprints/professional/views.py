@@ -2,18 +2,18 @@ from flask import Blueprint, render_template, abort
 
 from .models import Organization, Person
 
-professional = Blueprint('professional', __name__, template_folder='templates')
+org = Blueprint('professional', __name__, template_folder='templates', url_prefix='/organizations')
 
 
 # Organizations
 
-@professional.route('/organizations/')
+@org.route('/')
 def organization_list():
     organizations = Organization.query.all()
     return render_template('professional/organization_list.jinja2', organizations=organizations)
 
 
-@professional.route('/organizations/<slug>/')
+@org.route('/<slug>/')
 def organization_detail(slug):
     organizations = Organization.query.all()
     result = None

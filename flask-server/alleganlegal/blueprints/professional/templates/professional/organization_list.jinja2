@@ -12,7 +12,7 @@
     <ul class="organization-list">
         {% for organization in organizations %}
         <li>
-            <a href="{{ url_for('professional.organization_detail', organization_id=organization.id, slug=organization.slug) }}">{{ organization.title }}</a>
+            <a href="{{ url_for('professional.organization_detail', slug=organization.slug) }}">{{ organization.title }}</a>
         </li>
         {% endfor %}
     </ul>
