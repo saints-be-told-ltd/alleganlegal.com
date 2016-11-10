@@ -2,7 +2,7 @@ from flask import Flask, request
 from flask_admin.contrib.sqla import ModelView
 
 from alleganlegal.settings import settings
-from alleganlegal.extensions import admin, db, md
+from alleganlegal.extensions import admin, db, md, toolbar
 from lib.imports import all_blueprints, all_models
 
 
@@ -64,6 +64,9 @@ def extensions(app):
 
     # Flask-Misaka
     md.init_app(app)
+
+    # Flask-DebugToolbar
+    toolbar.init_app(app)
 
     return None
 

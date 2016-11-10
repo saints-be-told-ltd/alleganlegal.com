@@ -5,7 +5,7 @@ except ImportError:
     from urllib.parse import urljoin
 
 from flask import url_for, request
-from flask_frozen import Freezer
+from lib.freezer import Freezer
 from unidecode import unidecode
 
 from alleganlegal.app import create_app
@@ -16,7 +16,7 @@ _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
 
 def all_urls():
     app = create_app()
-    freezer = Freezer(app, with_static_files=False)
+    freezer = Freezer(app)
     return [url for url, _ in freezer._generate_all_urls()]
 
 

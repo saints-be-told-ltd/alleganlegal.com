@@ -22,7 +22,7 @@ class Term(db.Model):
 
     # Relationships.
     organizations = db.relationship('Organization', secondary=organization_categories,
-        backref=db.backref('term'), lazy='dynamic')
+        backref=db.backref('terms'), lazy='dynamic')
     synonyms = db.relationship('Synonym', backref='term', lazy='dynamic')
 
     # Details

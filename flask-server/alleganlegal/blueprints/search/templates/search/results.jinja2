@@ -1,4 +1,5 @@
 {% extends 'layouts/skeleton.jinja2' %}
+{% from 'search/macros/macros.jinja2' import listing_row with context %}
 
 {% set title = term.term + " Lawyers in Allegan, MI - Allegan Legal" %}
 
@@ -7,14 +8,26 @@
 {% set banner_img = url_for('static', filename='images/terms/' + term.slug + '.png') %}
 
 {% block body %}
+    <style>
+        .table > tbody > tr > td {
+            vertical-align: middle;
+        }
+    </style>
+
     <table class="table table-striped table-hover">
     <tbody>
     {% for organization in term.organization_results %}
         <tr>
             <td class="table-main-results">
+                <img src="{{ url_for('static', filename='images/organizations/{}.png'.format(organization.id)) }}" class="img-circle" style="height: 150px">
+            </td>
+            <td class="table-main-results">
                 <a href="{{ url_for('professional.organization_detail', slug=organization.slug) }}">
                     {{ organization.title }}
                 </a>
+            </td>
+            <td class="table-main-results">
+                {{ organization.click_to_call_button }}
             </td>
         </tr>
     {% endfor %}

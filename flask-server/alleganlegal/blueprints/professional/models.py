@@ -35,7 +35,7 @@ class Organization(db.Model):
         }
         return {
             "intl": '+1-{area}-{three}-{four}'.format(**p),
-            "human": '+1 ({area}) {three}-{four}'.format(**p)
+            "human": '({area}) {three}-{four}'.format(**p)
         }
 
 
@@ -48,6 +48,17 @@ class Organization(db.Model):
         if self.address_zoom:
             return self.address_zoom
         return '18'
+
+    @property
+    def classification_text(self):
+        text = ''
+        for term in self.terms:
+            text += term.term + ', '
+        return text[:-2]
+
+    @property
+    def click_to_call_button(self):
+        return '<a href="tel:{intl}" class="btn btn-primary">{human}</a>'.format(**self._phone)
 
     def __repr__(self):
         return self.title

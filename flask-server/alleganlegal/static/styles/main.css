@@ -33,6 +33,13 @@ body {
 }
 
 
+/* Vertical center */
+
+.vertical-center {
+    vertical-align: center;
+}
+
+
 /* Blog - preview
 -------------------------------------------------- */
 
